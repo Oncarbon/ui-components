@@ -1,0 +1,50 @@
+{
+  "name": "@oncarbon/ui-components",
+  "version": "1.0.0",
+  "description": "Oncarbon UI components",
+  "keywords": [
+    "oncarbon",
+    "stencil",
+    "component"
+  ],
+  "main": "dist/index.cjs.js",
+  "module": "dist/custom-elements/index.js",
+  "es2015": "dist/esm/index.js",
+  "es2017": "dist/esm/index.js",
+  "types": "dist/custom-elements/index.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "collection:main": "dist/collection/index.js",
+  "files": [
+    "dist/",
+    "loader/"
+  ],
+  "author": "Oncarbon",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oncarbon/ui-components.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "clean": "rimraf dist && rimraf loader",
+    "build": "stencil build --docs --docs-json dist/docs.json",
+    "start": "stencil build --dev --watch --serve",
+    "test": "stencil test --spec --e2e",
+    "test:watch": "stencil test --spec --e2e --watchAll",
+    "generate": "stencil generate",
+    "watch": "stencil build --prod --watch"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@popperjs/core": "2.11.0",
+    "@stencil/core": "2.11.0"
+  },
+  "devDependencies": {
+    "@types/jest": "26.0.24",
+    "jest": "26.6.3",
+    "jest-cli": "26.6.3",
+    "puppeteer": "10.4.0",
+    "rimraf": "3.0.2"
+  }
+}

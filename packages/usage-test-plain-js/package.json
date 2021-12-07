@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "@oncarbon/ui-components-usage-test-plain-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {
+    "serve": "^13.0.2"
+  },
+  "scripts": {
+    "start": "serve dist"
+  },
+  "author": "Oncarbon",
+  "license": "MIT"
+}
