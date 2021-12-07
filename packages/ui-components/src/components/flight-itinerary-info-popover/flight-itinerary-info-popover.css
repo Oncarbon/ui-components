@@ -1,0 +1,19 @@
+.popover-content-container {
+  box-shadow: 0px 4px 40px rgba(5, 0, 57, 0.07);
+  border-radius: 4px;
+  background-color: #fff;
+  z-index: 999999;
+  box-sizing: border-box;
+  display: flex;
+  width: 311px;
+}
+
+@media (min-width: 500px) {
+  .popover-content-container {
+    width: 360px;
+  }
+}
+
+.popover-content {
+  flex: 1;
+}
