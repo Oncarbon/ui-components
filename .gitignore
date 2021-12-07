@@ -1,0 +1,7 @@
+dist/
+loader/
+node_modules/
+coverage/
+.vscode
+.eslintcache
+stats.json
