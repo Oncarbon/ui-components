@@ -8,3 +8,4 @@ stats.json
 coverage/
 # TS declaration files
 *.d.ts
+CHANGELOG.md
