@@ -23,6 +23,10 @@
     "type": "git",
     "url": "https://github.com/oncarbon/ui-components.git"
   },
+  "homepage": "https://github.com/oncarbon/ui-components/tree/main/packages/ui-components",
+  "bugs": {
+    "url": "https://github.com/oncarbon/ui-components/issues"
+  },
   "publishConfig": {
     "access": "public"
   },

@@ -1,12 +1,14 @@
 {
   "private": true,
   "name": "@oncarbon/ui-components-monorepo",
+  "description": "Oncarbon UI components monorepo root package.json. Used mainly for scripts, not published to NPM.",
   "workspaces": [
     "./packages/*"
   ],
   "scripts": {
     "clean": "tsc --build --clean",
-    "changelog": "conventional-changelog -p angular -i ./CHANGELOG.md -k core -s",
+    "changelog": "conventional-changelog -p angular -i ./CHANGELOG.md -k packages/ui-components -s",
+    "commit": "cz",
     "lint": "eslint . --max-warnings=0 --ext .ts",
     "lint:fix": "eslint . --max-warnings=0 --ext .ts --fix",
     "prettier": "prettier . --list-different",
