@@ -21,7 +21,7 @@
   "author": "Oncarbon",
   "repository": {
     "type": "git",
-    "url": "https://github.com/oncarbon/ui-components.git"
+    "url": "git+https://github.com/oncarbon/ui-components.git"
   },
   "homepage": "https://github.com/oncarbon/ui-components/tree/main/packages/ui-components",
   "bugs": {
