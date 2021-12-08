@@ -13,12 +13,14 @@ const itineraryOncarbonId =
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property              | Attribute               | Description                                                          | Type     | Default                      |
 | --------------------- | ----------------------- | -------------------------------------------------------------------- | -------- | ---------------------------- |
 | `apiBaseUrl`          | `api-base-url`          | Optional base URL for the Oncarbon API where the info is loaded from | `string` | `"https://api.oncarbon.app"` |
 | `itineraryOncarbonId` | `itinerary-oncarbon-id` | The flight itinerary's oncarbon id for which to show the info        | `string` | `undefined`                  |
+
 
 ## Events
 
@@ -27,20 +29,20 @@ const itineraryOncarbonId =
 | `closeClicked` | Event emitted when the close icon has been clicked           | `CustomEvent<void>` |
 | `loadingReady` | Event emitted when the flight itinerary info has been loaded | `CustomEvent<void>` |
 
+
 ## Dependencies
 
 ### Used by
 
-- [onc-flight-itinerary-info-popover](../flight-itinerary-info-popover)
+ - [onc-flight-itinerary-info-popover](../flight-itinerary-info-popover)
 
 ### Graph
-
 ```mermaid
 graph TD;
   onc-flight-itinerary-info-popover --> onc-flight-itinerary-info
   style onc-flight-itinerary-info fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*
