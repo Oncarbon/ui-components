@@ -16,6 +16,13 @@ export class FlightItineraryInfo {
   @Prop() itineraryOncarbonId: string;
 
   /**
+   * Optional RFC 5646 language tag in which the info is shown. Supported
+   * languages are english and finnish. If an unsupported language tag is
+   * given, english is used as a fallback.
+   */
+  @Prop() language? = "en";
+
+  /**
    * Optional base URL for the Oncarbon API where the info is loaded from
    */
   @Prop() apiBaseUrl = "https://api.oncarbon.app";
@@ -83,6 +90,6 @@ export class FlightItineraryInfo {
       return null;
     }
 
-    return `${this.apiBaseUrl}/v1/flights/flight-itineraries/embed/${this.itineraryOncarbonId}`;
+    return `${this.apiBaseUrl}/v1/flights/flight-itineraries/embed/${this.itineraryOncarbonId}?lang=${this.language}`;
   }
 }

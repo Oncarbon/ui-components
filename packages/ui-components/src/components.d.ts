@@ -16,6 +16,10 @@ export namespace Components {
           * The flight itinerary's oncarbon id for which to show the info
          */
         "itineraryOncarbonId": string;
+        /**
+          * Optional RFC 5646 language tag in which the info is shown. Supported languages are english and finnish. If an unsupported language tag is given, english is used as a fallback.
+         */
+        "language"?: string;
     }
     interface OncFlightItineraryInfoPopover {
         /**
@@ -78,6 +82,10 @@ declare namespace LocalJSX {
           * The flight itinerary's oncarbon id for which to show the info
          */
         "itineraryOncarbonId"?: string;
+        /**
+          * Optional RFC 5646 language tag in which the info is shown. Supported languages are english and finnish. If an unsupported language tag is given, english is used as a fallback.
+         */
+        "language"?: string;
         /**
           * Event emitted when the close icon has been clicked
          */
