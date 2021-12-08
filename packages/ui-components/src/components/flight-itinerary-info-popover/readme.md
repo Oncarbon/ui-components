@@ -69,15 +69,17 @@ The popover is always positioned in reference to the trigger element. See [the s
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
-| Property              | Attribute               | Description                                                                                                                                                                                                                                                                            | Type                                                                                                                                                                                                         | Default     |
-| --------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
-| `apiBaseUrl`          | `api-base-url`          | Oncarbon API base URL where the info is loaded from                                                                                                                                                                                                                                    | `string`                                                                                                                                                                                                     | `undefined` |
-| `itineraryOncarbonId` | `itinerary-oncarbon-id` | Oncarbon ID for the flight itinerary whose info is to be shown                                                                                                                                                                                                                         | `string`                                                                                                                                                                                                     | `undefined` |
-| `offset`              | --                      | The offset lets you displace the popover element from its reference element. See https://popper.js.org/docs/v2/modifiers/offset/#options                                                                                                                                               | `[number, number]`                                                                                                                                                                                           | `[0, 10]`   |
-| `placement`           | `placement`             | Describes the preferred placement of the popover. See https://popper.js.org/docs/v2/constructors/#placement                                                                                                                                                                            | `"auto" \| "auto-end" \| "auto-start" \| "bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "left-end" \| "left-start" \| "right" \| "right-end" \| "right-start" \| "top" \| "top-end" \| "top-start"` | `"bottom"`  |
-| `trigger`             | `trigger`               | Optional trigger element that opens the popup and in reference to which the popover is positioned. Can either be a 1. a DOM selector string, such as .trigger-button 2. a HTML element If none is given, the popover is triggered and positioned by the first child of this component. | `HTMLElement \| string`                                                                                                                                                                                      | `undefined` |
+| Property              | Attribute               | Description                                                                                                                                                                                                                                                                             | Type                                                                                                                                                                                                         | Default     |
+| --------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+| `apiBaseUrl`          | `api-base-url`          | Oncarbon API base URL where the info is loaded from                                                                                                                                                                                                                                     | `string`                                                                                                                                                                                                     | `undefined` |
+| `itineraryOncarbonId` | `itinerary-oncarbon-id` | Oncarbon ID for the flight itinerary whose info is to be shown                                                                                                                                                                                                                          | `string`                                                                                                                                                                                                     | `undefined` |
+| `offset`              | --                      | The offset lets you displace the popover element from its reference element. See https://popper.js.org/docs/v2/modifiers/offset/#options                                                                                                                                                | `[number, number]`                                                                                                                                                                                           | `[0, 10]`   |
+| `placement`           | `placement`             | Describes the preferred placement of the popover. See https://popper.js.org/docs/v2/constructors/#placement                                                                                                                                                                             | `"auto" \| "auto-end" \| "auto-start" \| "bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "left-end" \| "left-start" \| "right" \| "right-end" \| "right-start" \| "top" \| "top-end" \| "top-start"` | `"bottom"`  |
+| `trigger`             | `trigger`               | Optional trigger element that opens the popup and in reference to which the popover is positioned. Can either be a 1. a DOM selector string, such as .trigger-button 2. a HTML element  If none is given, the popover is triggered and positioned by the first child of this component. | `HTMLElement \| string`                                                                                                                                                                                      | `undefined` |
+
 
 ## Methods
 
@@ -89,6 +91,8 @@ Closes the popover
 
 Type: `Promise<void>`
 
+
+
 ### `open() => Promise<void>`
 
 Opens the popover
@@ -97,6 +101,9 @@ Opens the popover
 
 Type: `Promise<void>`
 
+
+
+
 ## Dependencies
 
 ### Depends on
@@ -104,13 +111,12 @@ Type: `Promise<void>`
 - [onc-flight-itinerary-info](../flight-itinerary-info)
 
 ### Graph
-
 ```mermaid
 graph TD;
   onc-flight-itinerary-info-popover --> onc-flight-itinerary-info
   style onc-flight-itinerary-info-popover fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

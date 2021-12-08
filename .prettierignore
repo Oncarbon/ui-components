@@ -8,4 +8,6 @@ stats.json
 coverage/
 # TS declaration files
 *.d.ts
+# Generated files
 CHANGELOG.md
+packages/ui-components/src/**/readme.md
