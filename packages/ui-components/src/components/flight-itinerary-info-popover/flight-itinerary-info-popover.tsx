@@ -48,6 +48,13 @@ export class FlightItineraryInfoPopover {
   @Prop() offset?: [number, number] = [0, 10];
 
   /**
+   * Optional RFC 5646 language tag in which the info is shown. Supported
+   * languages are english and finnish. If an unsupported language tag is
+   * given, english is used as a fallback.
+   */
+  @Prop() language? = "en";
+
+  /**
    * Oncarbon API base URL where the info is loaded from
    */
   @Prop() apiBaseUrl?: string;
@@ -174,6 +181,7 @@ export class FlightItineraryInfoPopover {
           class="popover-content"
           apiBaseUrl={this.apiBaseUrl}
           itineraryOncarbonId={this.itineraryOncarbonId}
+          language={this.language}
         ></onc-flight-itinerary-info>
       </div>,
     ];
