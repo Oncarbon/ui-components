@@ -3,8 +3,8 @@
 
 ### Features
 
-* add onc-flight-itinerary-info component ([077bb80](https://github.com/oncarbon/ui-components/commit/077bb80711a23892f1e6ee40df80c6a30b8e9cb8))
-* add onc-flight-itinerary-info-popover component ([a965930](https://github.com/oncarbon/ui-components/commit/a965930291e8b36fd26f7cc265335d11be5b9da3))
+* add onc-flight-itinerary-info component ([6bd1740](https://github.com/oncarbon/ui-components/commit/6bd1740f1e5dcaa9b073b3ab129e934daa54b580))
+* add onc-flight-itinerary-info-popover component ([69224ef](https://github.com/oncarbon/ui-components/commit/69224ef819d31b3ff9c3cbd3966de3907f51cc69))
 
 
 
