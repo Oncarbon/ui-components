@@ -90,6 +90,11 @@ export class FlightItineraryInfoPopover {
     this.close();
   }
 
+  @Listen("loadingReady")
+  onItineraryInfoLoaded() {
+    if (this.popperInstance) this.popperInstance.update();
+  }
+
   componentDidRender() {
     if (!this.isVisible) return;
 
