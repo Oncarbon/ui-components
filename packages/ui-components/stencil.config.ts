@@ -27,4 +27,12 @@ export const config: Config = {
     //   file: "../docs/core.json",
     // },
   ],
+  testing: {
+    // Fix to prevent jest from transpiling certain node_modules:
+    // https://github.com/ionic-team/stencil/issues/2129
+    transform: {
+      "^.+\\.(ts|tsx|js|jsx|css)$": "@stencil/core/testing/jest-preprocessor",
+    },
+    transformIgnorePatterns: ["node_modules/(?!(@popperjs)/)"],
+  },
 };
