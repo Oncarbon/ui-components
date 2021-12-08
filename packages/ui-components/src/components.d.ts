@@ -35,6 +35,10 @@ export namespace Components {
          */
         "itineraryOncarbonId": string;
         /**
+          * Optional RFC 5646 language tag in which the info is shown. Supported languages are english and finnish. If an unsupported language tag is given, english is used as a fallback.
+         */
+        "language"?: string;
+        /**
           * The offset lets you displace the popover element from its reference element. See https://popper.js.org/docs/v2/modifiers/offset/#options
           * @default [0, 10]
          */
@@ -104,6 +108,10 @@ declare namespace LocalJSX {
           * Oncarbon ID for the flight itinerary whose info is to be shown
          */
         "itineraryOncarbonId"?: string;
+        /**
+          * Optional RFC 5646 language tag in which the info is shown. Supported languages are english and finnish. If an unsupported language tag is given, english is used as a fallback.
+         */
+        "language"?: string;
         /**
           * The offset lets you displace the popover element from its reference element. See https://popper.js.org/docs/v2/modifiers/offset/#options
           * @default [0, 10]
