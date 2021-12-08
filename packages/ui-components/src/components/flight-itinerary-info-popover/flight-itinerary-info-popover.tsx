@@ -93,7 +93,7 @@ export class FlightItineraryInfoPopover {
   componentDidRender() {
     if (!this.isVisible) return;
 
-    if (!this.popperInstance) {
+    if (!this.popperInstance && this.usePopper()) {
       this.popperInstance = createPopper(this.triggerEl, this.popoverEl, {
         placement: this.placement ?? "bottom",
         modifiers: [
@@ -116,11 +116,17 @@ export class FlightItineraryInfoPopover {
       });
     }
 
+    // When the popover is shown, we first render it so that it is hidden
+    // to prevent layout from flickering when popper takes over and positions
+    // it with position absolute. Hence after the first render we show the
+    // the content.
     if (!this.showContent) {
       this.showContent = true;
     }
 
-    this.popperInstance.forceUpdate();
+    if (this.popperInstance) {
+      this.popperInstance.update();
+    }
   }
 
   /**
@@ -136,8 +142,10 @@ export class FlightItineraryInfoPopover {
    */
   @Method()
   async close() {
-    this.popperInstance.destroy();
-    this.popperInstance = null;
+    if (this.popperInstance) {
+      this.popperInstance.destroy();
+      this.popperInstance = null;
+    }
     this.popoverEl = null;
     this.showContent = false;
     this.isVisible = false;
@@ -178,5 +186,9 @@ export class FlightItineraryInfoPopover {
     const firstChild = this.el.children.item(0);
 
     return firstChild ?? this.el.previousElementSibling ?? this.el.parentElement;
+  }
+
+  private usePopper() {
+    return window.innerWidth >= 768;
   }
 }
