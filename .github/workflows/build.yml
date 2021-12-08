@@ -1,0 +1,82 @@
+name: Build
+
+on:
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  lint:
+    name: ⬣ ESLint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v2
+
+      - name: ⎔ Setup node.js
+        uses: actions/setup-node@v2.4.1
+        with:
+          node-version: "16.x"
+
+      - name: 📩 Install dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: 🔬 Lint
+        run: npm run lint
+
+  prettier:
+    name: 💄 Prettier
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v2
+
+      - name: ⎔ Setup node.js
+        uses: actions/setup-node@v2.4.1
+        with:
+          node-version: "16.x"
+
+      - name: 📩 Install dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: 💄 Prettier
+        run: npm run prettier
+
+  test:
+    name: 📝 Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v2
+
+      - name: ⎔ Setup node.js
+        uses: actions/setup-node@v2.4.1
+        with:
+          node-version: "16.x"
+
+      - name: 📩 Install dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: 📝 Test
+        run: npm run test -w ./packages/ui-components
+
+  build:
+    name: ⚙️ Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v2
+
+      - name: ⎔ Setup node.js
+        uses: actions/setup-node@v2.4.1
+        with:
+          node-version: "16.x"
+
+      - name: 📩 Install dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: 📝 Test
+        run: npm run build -w ./packages/ui-components
