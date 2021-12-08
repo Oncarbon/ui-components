@@ -42,6 +42,8 @@ export class FlightItineraryInfo {
    */
   @State() iframeHeight = 360;
 
+  private shouldEmitLoadingReadyEventAfterRendering = false;
+
   // The itinerary info page that is loaded into the iframe sends
   // "loaded" message when it has successfully loaded and "close"
   // message when the close icon has been clicked
@@ -53,11 +55,21 @@ export class FlightItineraryInfo {
       return;
     }
     if (e.data.type === "loaded") {
+      // The iframe has been loaded and we know is height. Resize it and
+      // raise a flag that we should emit the "loadingReady" event
+      // after the next render
       this.iframeHeight = e.data.height;
-      this.loadingReady.emit();
+      this.shouldEmitLoadingReadyEventAfterRendering = true;
     }
     if (e.data.type === "close") {
       this.closeClicked.emit();
+    }
+  }
+
+  componentDidRender() {
+    if (this.shouldEmitLoadingReadyEventAfterRendering) {
+      this.loadingReady.emit();
+      this.shouldEmitLoadingReadyEventAfterRendering = false;
     }
   }
 
