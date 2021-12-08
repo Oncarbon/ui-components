@@ -65,7 +65,7 @@ The popover is closed by
 
 ## Positioning the popover
 
-The popover is always positioned in reference to the trigger element. See [the section above](#opening-the-popover) how to define the trigger element. The `placement` and `offset` properties define how the popover is positioned relative to the trigger element.
+The popover positioning varies depending on the viewport width. On small screen sizes (below 768px) it is positioned in the middle of the screen. On screen sizes above that, it is positioned in reference to the trigger element. See [the section above](#opening-the-popover) how to define the trigger element. The `placement` and `offset` properties define how the popover is positioned relative to the trigger element.
 
 <!-- Auto Generated Below -->
 

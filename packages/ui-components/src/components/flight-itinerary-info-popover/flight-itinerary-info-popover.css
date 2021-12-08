@@ -5,12 +5,21 @@
   z-index: 999999;
   box-sizing: border-box;
   display: flex;
-  width: 311px;
+  width: 360px;
 }
 
-@media (min-width: 500px) {
+@media (max-width: 500px) {
   .popover-content-container {
-    width: 360px;
+    width: 311px;
+  }
+}
+
+@media (max-width: 767px) {
+  .popover-content-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 
