@@ -30,7 +30,7 @@
     "husky": "7.0.4",
     "lint-staged": "11.2.6",
     "prettier": "2.4.1",
-    "typescript": "4.4.4"
+    "typescript": "4.2.4"
   },
   "lint-staged": {
     "*.ts": "eslint --max-warnings=0 --cache --fix",

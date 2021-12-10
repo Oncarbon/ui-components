@@ -1,0 +1,40 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
+    "strictMetadataEmit": true,
+    "skipTemplateCodegen": true,
+    "fullTemplateTypeCheck": false,
+    "enableResourceInlining": true,
+    "enableIvy": true,
+    "compilationMode": "partial"
+  },
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "build/es2015",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "declarationMap": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2017",
+    "module": "es2020",
+    "lib": ["es2020", "dom"],
+    "paths": {
+      "ui-components-angular": [
+        "dist/ui-components-angular/ui-components-angular",
+        "dist/ui-components-angular"
+      ]
+    }
+  },
+  "exclude": ["src/test.ts", "**/*.spec.ts"],
+  "files": ["src/index.ts"]
+}

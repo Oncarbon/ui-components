@@ -4,8 +4,8 @@ module.exports = {
   ignorePatterns: [
     // The eslint config itself. Needed for vscode-eslint extension
     ".eslintrc.js",
-    "stencil.config.ts",
-    "/components",
+    "src/lib/**/*",
+    "scripts/**",
   ],
   parserOptions: {
     project: ["./tsconfig.json"],

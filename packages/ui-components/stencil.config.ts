@@ -1,15 +1,22 @@
+import { angularOutputTarget as angular } from "@stencil/angular-output-target";
 import { Config } from "@stencil/core";
 
 export const config: Config = {
   namespace: "Oncarbon",
   preamble: "(C) Oncarbon https://oncarbon.app - MIT",
   outputTargets: [
+    angular({
+      componentCorePackage: `@oncarbon/ui-components`,
+      directivesProxyFile: `../ui-components-angular/src/lib/stencil-generated/components.ts`,
+      includeImportCustomElements: true,
+    }),
     {
       type: "dist",
       esmLoaderPath: "../loader",
     },
     {
-      type: "dist-custom-elements-bundle",
+      type: "dist-custom-elements",
+      dir: "components",
     },
     {
       type: "docs-readme",
