@@ -5,3 +5,4 @@ coverage/
 .vscode
 .eslintcache
 stats.json
+packages/ui-components/components

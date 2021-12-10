@@ -1,0 +1,27 @@
+{
+  "name": "@oncarbon/ui-components-angular",
+  "version": "1.1.0",
+  "description": "Angular specific wrappers for @oncarbon/ui-components",
+  "scripts": {
+    "build": "ng-packagr",
+    "link": "node scripts/link-copy.js"
+  },
+  "author": "Oncarbon",
+  "license": "MIT",
+  "dependencies": {
+    "@oncarbon/ui-components": "1.1.0",
+    "tslib": "^2.1.0"
+  },
+  "peerDependencies": {
+    "@angular/common": ">=11.0.0",
+    "@angular/core": ">=11.0.0"
+  },
+  "devDependencies": {
+    "@angular/cli": "^11.1.2",
+    "@angular/compiler": "^11.2.14",
+    "@angular/compiler-cli": "^11.2.14",
+    "@angular/core": "^11.2.14",
+    "fs-extra": "^10.0.0",
+    "ng-packagr": "^11.2.4"
+  }
+}

@@ -11,3 +11,5 @@ coverage/
 # Generated files
 CHANGELOG.md
 packages/ui-components/src/**/readme.md
+packages/ui-components/components/**/*
+packages/ui-components-angular/src/lib/stencil-generated/**/*
