@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/oncarbon/ui-components/compare/v1.1.0...v1.2.0) (2021-12-10)
+
+
+### Features
+
+* **angular:** add angular components package ([ead88ba](https://github.com/oncarbon/ui-components/commit/ead88ba12635103565360a6be8b80751df445f3d))
+
+
+
 # [1.1.0](https://github.com/oncarbon/ui-components/compare/v1.0.0...v1.1.0) (2021-12-08)
 
 
