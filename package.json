@@ -6,7 +6,8 @@
     "./packages/*"
   ],
   "scripts": {
-    "clean": "tsc --build --clean",
+    "build": "npm run build -w ./packages/ui-components && npm run build -w ./packages/ui-components-angular",
+    "clean": "npm run clean -w ./packages/ui-components && npm run clean -w ./packages/ui-components-angular",
     "changelog": "conventional-changelog -p angular -i ./CHANGELOG.md -k packages/ui-components -s",
     "commit": "cz",
     "lint": "eslint . --max-warnings=0 --ext .ts",

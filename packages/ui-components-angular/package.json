@@ -2,11 +2,29 @@
   "name": "@oncarbon/ui-components-angular",
   "version": "1.1.0",
   "description": "Angular specific wrappers for @oncarbon/ui-components",
+  "keywords": [
+    "oncarbon",
+    "stencil",
+    "component",
+    "angular"
+  ],
   "scripts": {
     "build": "ng-packagr",
+    "clean": "rimraf dist",
     "link": "node scripts/link-copy.js"
   },
   "author": "Oncarbon",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oncarbon/ui-components.git"
+  },
+  "homepage": "https://github.com/oncarbon/ui-components/tree/main/packages/ui-components-angular",
+  "bugs": {
+    "url": "https://github.com/oncarbon/ui-components/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT",
   "dependencies": {
     "@oncarbon/ui-components": "1.1.0",
