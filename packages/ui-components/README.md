@@ -57,7 +57,7 @@ defineCustomElements();
 render() {
   return (
     <div>
-      <onc-flight-itinerary-info-popover oncarbon-id="1234">
+      <onc-flight-itinerary-info-popover itinerary-oncarbon-id="1234">
     </div>
   );
 }
