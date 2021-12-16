@@ -14,7 +14,9 @@
     "lint:fix": "eslint . --max-warnings=0 --ext .ts --fix",
     "prettier": "prettier . --list-different",
     "prettier:fix": "prettier . --write",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prerelease": "zx scripts/prerelease.mjs",
+    "test": "npm run test -w ./packages/ui-components"
   },
   "license": "MIT",
   "devDependencies": {
@@ -30,8 +32,10 @@
     "eslint-plugin-import": "2.25.2",
     "husky": "7.0.4",
     "lint-staged": "11.2.6",
+    "new-github-release-url": "2.0.0",
     "prettier": "2.4.1",
-    "typescript": "4.2.4"
+    "typescript": "4.2.4",
+    "zx": "4.2.0"
   },
   "lint-staged": {
     "*.ts": "eslint --max-warnings=0 --cache --fix",

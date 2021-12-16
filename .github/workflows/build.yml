@@ -60,7 +60,7 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: 📝 Test
-        run: npm run test -w ./packages/ui-components
+        run: npm run test
 
   build:
     name: ⚙️ Build
@@ -78,8 +78,5 @@ jobs:
       - name: 📩 Install dependencies
         uses: bahmutov/npm-install@v1
 
-      - name: 🔨 Build core
-        run: npm run build -w ./packages/ui-components
-
-      - name: 🔨 Build angular
-        run: npm run build -w ./packages/ui-components-angular
+      - name: 🔨 Build
+        run: npm run build
