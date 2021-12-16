@@ -1,4 +1,4 @@
-.popover-content-container {
+.onc-popover-content-container {
   box-shadow: 0px 4px 40px rgba(5, 0, 57, 0.07);
   border-radius: 4px;
   background-color: #fff;
@@ -9,13 +9,13 @@
 }
 
 @media (max-width: 500px) {
-  .popover-content-container {
+  .onc-popover-content-container {
     width: 311px;
   }
 }
 
 @media (max-width: 767px) {
-  .popover-overlay {
+  .onc-popover-overlay {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -24,30 +24,30 @@
     background: rgba(0, 0, 0, 0.3);
   }
 
-  .popover-content-container {
+  .onc-popover-content-container {
     position: relative;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
 
-  .popover-arrow {
+  .onc-popover-arrow {
     display: none;
   }
 }
 
-.popover-content {
+.onc-popover-content {
   flex: 1;
 }
 
-.popover-arrow {
+.onc-popover-arrow {
   width: 12px;
   height: 12px;
   position: absolute;
   z-index: -1;
 }
 
-.popover-arrow::before {
+.onc-popover-arrow::before {
   visibility: visible;
   transform: translateX(0px) rotate(45deg);
   transform-origin: center center 0px;
@@ -62,10 +62,10 @@
   z-index: -1;
 }
 
-.popover-content-container[data-popper-placement^="top"] > .popover-arrow {
+.onc-popover-content-container[data-popper-placement^="top"] > .onc-popover-arrow {
   bottom: -6px;
 }
 
-.popover-content-container[data-popper-placement^="bottom"] > .popover-arrow {
+.onc-popover-content-container[data-popper-placement^="bottom"] > .onc-popover-arrow {
   top: -6px;
 }

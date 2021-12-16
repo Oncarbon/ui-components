@@ -169,17 +169,17 @@ export class FlightItineraryInfoPopover {
 
     return [
       <slot />,
-      <div class="popover-overlay">
+      <div class="onc-popover-overlay">
         <div
           ref={(el) => (this.popoverEl = el)}
-          class="popover-content-container"
+          class="onc-popover-content-container"
           style={{
             ...(!this.showContent && { display: "none" }),
           }}
         >
-          <div class="popover-arrow" data-popper-arrow />
+          <div class="onc-popover-arrow" data-popper-arrow />
           <onc-flight-itinerary-info
-            class="popover-content"
+            class="onc-popover-content"
             apiBaseUrl={this.apiBaseUrl}
             itineraryOncarbonId={this.itineraryOncarbonId}
             language={this.language}
