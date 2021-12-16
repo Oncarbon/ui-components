@@ -82,7 +82,10 @@ export class FlightItineraryInfoPopover {
   @State() isVisible = false;
 
   @Listen("click", {
-    target: "window",
+    // Use body instead of window as the click event handler's target,
+    // because on ios safari the events are not fired on window but on
+    // body they work.
+    target: "body",
   })
   onClick(e: MouseEvent) {
     this.triggerEl = this.getTriggerElement();
