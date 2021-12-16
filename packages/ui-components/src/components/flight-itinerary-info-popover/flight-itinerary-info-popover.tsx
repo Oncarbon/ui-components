@@ -166,20 +166,22 @@ export class FlightItineraryInfoPopover {
 
     return [
       <slot />,
-      <div
-        ref={(el) => (this.popoverEl = el)}
-        class="popover-content-container"
-        style={{
-          ...(!this.showContent && { display: "none" }),
-        }}
-      >
-        <div class="popover-arrow" data-popper-arrow />
-        <onc-flight-itinerary-info
-          class="popover-content"
-          apiBaseUrl={this.apiBaseUrl}
-          itineraryOncarbonId={this.itineraryOncarbonId}
-          language={this.language}
-        ></onc-flight-itinerary-info>
+      <div class="popover-overlay">
+        <div
+          ref={(el) => (this.popoverEl = el)}
+          class="popover-content-container"
+          style={{
+            ...(!this.showContent && { display: "none" }),
+          }}
+        >
+          <div class="popover-arrow" data-popper-arrow />
+          <onc-flight-itinerary-info
+            class="popover-content"
+            apiBaseUrl={this.apiBaseUrl}
+            itineraryOncarbonId={this.itineraryOncarbonId}
+            language={this.language}
+          ></onc-flight-itinerary-info>
+        </div>
       </div>,
     ];
   }
