@@ -1,3 +1,19 @@
+# [1.3.0](https://github.com/oncarbon/ui-components/compare/v1.2.0...v1.3.0) (2021-12-16)
+
+
+### Bug Fixes
+
+* **onc-flight-itinerary-info-popover:** add onc- prefix to css classnames ([ee933ad](https://github.com/oncarbon/ui-components/commit/ee933adf17a62a52a613e1d08b37f94b71e5eb5d))
+* **onc-flight-itinerary-info-popover:** fix popover close click handler not working on ios safari ([c149782](https://github.com/oncarbon/ui-components/commit/c149782dd4d7072713e4ae1282fed3d3efd42273))
+
+
+### Features
+
+* **onc-flight-itinerary-info-popover:** add arrow pointing to the trigger element ([5acded2](https://github.com/oncarbon/ui-components/commit/5acded2680fb5cb33ad0dbcee8e8f35850ebc044))
+* **onc-flight-itinerary-info-popover:** show background overlay on small screen sizes with popover ([d7dabe8](https://github.com/oncarbon/ui-components/commit/d7dabe8f41f42a95ccaad04dbb38d1fd198d4acc))
+
+
+
 # [1.2.0](https://github.com/oncarbon/ui-components/compare/v1.1.0...v1.2.0) (2021-12-10)
 
 
