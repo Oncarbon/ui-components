@@ -1,3 +1,4 @@
+import arrow from "@popperjs/core/lib/modifiers/arrow";
 import flip from "@popperjs/core/lib/modifiers/flip";
 import offset from "@popperjs/core/lib/modifiers/offset";
 import preventOverflow from "@popperjs/core/lib/modifiers/preventOverflow";
@@ -118,12 +119,7 @@ export class FlightItineraryInfoPopover {
               offset: this.offset,
             },
           },
-          // {
-          //   name: 'arrow',
-          //   options: {
-          //     element: arrow,
-          //   },
-          // },
+          arrow,
         ],
       });
     }
@@ -177,6 +173,7 @@ export class FlightItineraryInfoPopover {
           ...(!this.showContent && { display: "none" }),
         }}
       >
+        <div class="popover-arrow" data-popper-arrow />
         <onc-flight-itinerary-info
           class="popover-content"
           apiBaseUrl={this.apiBaseUrl}
