@@ -1,3 +1,12 @@
+# [1.4.0](https://github.com/oncarbon/ui-components/compare/v1.3.0...v1.4.0) (2022-02-09)
+
+
+### Bug Fixes
+
+* **onc-flight-itinerary-info-popover:** fix popover in certan DOM structures ([eacd38f](https://github.com/oncarbon/ui-components/commit/eacd38ff9ce1028a7b527f322d3363447f600d75))
+
+
+
 # [1.3.0](https://github.com/oncarbon/ui-components/compare/v1.2.0...v1.3.0) (2021-12-16)
 
 
