@@ -16,6 +16,7 @@
 
 @media (max-width: 767px) {
   .onc-popover-overlay {
+    z-index: 999999;
     position: fixed;
     top: 0;
     bottom: 0;
