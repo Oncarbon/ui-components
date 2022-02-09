@@ -1,3 +1,12 @@
+## [1.4.1](https://github.com/oncarbon/ui-components/compare/v1.4.0...v1.4.1) (2022-02-09)
+
+
+### Bug Fixes
+
+* **onc-flight-itinerary-info-popover:** fix popover going under other elements in some cases ([7667778](https://github.com/oncarbon/ui-components/commit/766777853fd55063a08eb1767c7378eab4ee4b48))
+
+
+
 # [1.4.0](https://github.com/oncarbon/ui-components/compare/v1.3.0...v1.4.0) (2022-02-09)
 
 
