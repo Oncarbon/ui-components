@@ -3,7 +3,7 @@ import flip from "@popperjs/core/lib/modifiers/flip";
 import offset from "@popperjs/core/lib/modifiers/offset";
 import preventOverflow from "@popperjs/core/lib/modifiers/preventOverflow";
 import { createPopper } from "@popperjs/core/lib/popper-lite";
-import { Component, Element, Prop, h, State, Listen, Method } from "@stencil/core";
+import { Component, Element, Prop, h, Listen, Method } from "@stencil/core";
 
 import type { Instance, Placement } from "@popperjs/core";
 
@@ -66,20 +66,13 @@ export class FlightItineraryInfoPopover {
 
   private triggerEl: Element;
   private popperInstance: Instance;
+  private popoverContentEl: HTMLElement;
   private popoverEl: HTMLElement;
-
-  /**
-   * Is the popover content shown. The content is first rendered
-   * as hidden, then it is positioned using popper and displayed.
-   * Otherwise the layout will flicker because the popover content
-   * will take space until it is positioned.
-   */
-  @State() showContent = false;
-
+  private observer: MutationObserver;
   /**
    * Is the popover currently open or closed
    */
-  @State() isVisible = false;
+  private isVisible = false;
 
   @Listen("click", {
     // Use body instead of window as the click event handler's target,
@@ -91,26 +84,100 @@ export class FlightItineraryInfoPopover {
     this.triggerEl = this.getTriggerElement();
     if (this.triggerEl && this.triggerEl.contains(e.target as Node)) {
       this.isVisible ? this.close() : this.open();
-    } else if (this.popoverEl && !this.popoverEl.contains(e.target as Node)) {
+    } else if (this.popoverContentEl && !this.popoverContentEl.contains(e.target as Node)) {
       this.close();
     }
   }
 
-  @Listen("closeClicked")
-  onCloseClicked() {
-    this.close();
+  /**
+   * Opens the popover
+   */
+  @Method()
+  async open() {
+    this.isVisible = true;
+
+    this.positionAfterCreation();
+    this.createAndAddPopoverIntoDom();
+    this.positionPopover();
   }
 
-  @Listen("loadingReady")
-  onItineraryInfoLoaded() {
-    if (this.popperInstance) this.popperInstance.update();
+  /**
+   * Closes the popover
+   */
+  @Method()
+  async close() {
+    if (this.popperInstance) {
+      this.popperInstance.destroy();
+      this.popperInstance = null;
+    }
+    if (this.popoverEl) {
+      document.body.removeChild(this.popoverEl);
+      this.popoverEl = null;
+    }
+    if (this.observer) {
+      this.observer.disconnect();
+      this.observer = null;
+    }
+    this.popoverContentEl = null;
+    this.isVisible = false;
   }
 
-  componentDidRender() {
-    if (!this.isVisible) return;
+  render() {
+    return <slot />;
+  }
 
+  private createAndAddPopoverIntoDom() {
+    this.popoverEl = document.createElement("div");
+    this.popoverEl.classList.add("onc-popover-overlay");
+
+    const content = this.createPopoverContentEl();
+    this.popoverEl.appendChild(content);
+
+    document.body.appendChild(this.popoverEl);
+  }
+
+  private createPopoverContentEl() {
+    this.popoverContentEl = document.createElement("div");
+    this.popoverContentEl.classList.add("onc-popover-content-container");
+
+    const arrow = document.createElement("div");
+    arrow.classList.add("onc-popover-arrow");
+    arrow.setAttribute("data-popper-arrow", "");
+
+    const content = document.createElement("onc-flight-itinerary-info", {
+      is: "onc-flight-itinerary-info",
+    }) as any;
+    content.classList.add("onc-popover-content");
+    content.apiBaseUrl = this.apiBaseUrl;
+    content.itineraryOncarbonId = this.itineraryOncarbonId;
+    content.language = this.language;
+
+    content.addEventListener("loadingReady", () => this.reposition());
+    content.addEventListener("closeClicked", () => this.close());
+
+    this.popoverContentEl.appendChild(arrow);
+    this.popoverContentEl.appendChild(content);
+
+    return this.popoverContentEl;
+  }
+
+  private getTriggerElement() {
+    if (typeof this.trigger === "string") {
+      return document.querySelector(this.trigger);
+    } else if (this.trigger instanceof window.Element) {
+      return this.trigger;
+    }
+
+    // No trigger defined, use either first child element,
+    // previous sibling or finally parent element
+    const firstChild = this.el.children.item(0);
+
+    return firstChild ?? this.el.previousElementSibling ?? this.el.parentElement;
+  }
+
+  private positionPopover() {
     if (!this.popperInstance && this.usePopper()) {
-      this.popperInstance = createPopper(this.triggerEl, this.popoverEl, {
+      this.popperInstance = createPopper(this.triggerEl, this.popoverContentEl, {
         placement: this.placement ?? "bottom",
         modifiers: [
           flip,
@@ -126,81 +193,47 @@ export class FlightItineraryInfoPopover {
         ],
       });
     }
+  }
 
-    // When the popover is shown, we first render it so that it is hidden
-    // to prevent layout from flickering when popper takes over and positions
-    // it with position absolute. Hence after the first render we show the
-    // the content.
-    if (!this.showContent) {
-      this.showContent = true;
+  private positionAfterCreation() {
+    // When the popover is initially created and positioned, it might
+    // not be fully rendered, meaning its size might not be known.
+    // This means that the popper instance might not be able to
+    // measure and calculate the correct position. We use here
+    // either mutation observer or setTimeout to wait until the
+    // popover is fully rendered and then reposition it.
+
+    if (MutationObserver && !this.observer) {
+      this.observer = new MutationObserver(() => {
+        if (document.contains(this.popoverEl)) {
+          this.observer.disconnect();
+          this.reposition();
+        }
+      });
+
+      this.observer.observe(document.body, {
+        attributes: false,
+        childList: true,
+        characterData: false,
+        subtree: true,
+      });
+    } else {
+      this.repositionIn(50);
+      this.repositionIn(100);
+      this.repositionIn(200);
+      this.repositionIn(300);
+      this.repositionIn(400);
     }
+  }
 
+  private repositionIn(ms: number) {
+    setTimeout(() => this.reposition(), ms);
+  }
+
+  private reposition() {
     if (this.popperInstance) {
       this.popperInstance.update();
     }
-  }
-
-  /**
-   * Opens the popover
-   */
-  @Method()
-  async open() {
-    this.isVisible = true;
-  }
-
-  /**
-   * Closes the popover
-   */
-  @Method()
-  async close() {
-    if (this.popperInstance) {
-      this.popperInstance.destroy();
-      this.popperInstance = null;
-    }
-    this.popoverEl = null;
-    this.showContent = false;
-    this.isVisible = false;
-  }
-
-  render() {
-    if (!this.isVisible) {
-      return <slot />;
-    }
-
-    return [
-      <slot />,
-      <div class="onc-popover-overlay">
-        <div
-          ref={(el) => (this.popoverEl = el)}
-          class="onc-popover-content-container"
-          style={{
-            ...(!this.showContent && { display: "none" }),
-          }}
-        >
-          <div class="onc-popover-arrow" data-popper-arrow />
-          <onc-flight-itinerary-info
-            class="onc-popover-content"
-            apiBaseUrl={this.apiBaseUrl}
-            itineraryOncarbonId={this.itineraryOncarbonId}
-            language={this.language}
-          ></onc-flight-itinerary-info>
-        </div>
-      </div>,
-    ];
-  }
-
-  private getTriggerElement() {
-    if (typeof this.trigger === "string") {
-      return document.querySelector(this.trigger);
-    } else if (this.trigger instanceof window.Element) {
-      return this.trigger;
-    }
-
-    // No trigger defined, use either first child element,
-    // previous sibling or finally parent element
-    const firstChild = this.el.children.item(0);
-
-    return firstChild ?? this.el.previousElementSibling ?? this.el.parentElement;
   }
 
   private usePopper() {
