@@ -1,9 +1,9 @@
 #!/usr/bin/env zx
 
-const { $, fs } = require("zx");
+const { $, fs, argv } = require("zx");
 // import newGithubReleaseUrl from "new-github-release-url";
 
-$.verbose = false;
+const isDryRun = !!argv["dry-run"];
 
 const newVersion = argv._[1];
 if (!newVersion) {
@@ -19,7 +19,13 @@ if (isCleanCmdOutput.stdout !== "") {
   process.exit(2);
 }
 
-console.log("Bumping package versions");
+console.log("Cleaning...");
+await $`npm run clean`;
+
+console.log("Running tests...");
+await $`npm run test`;
+
+console.log("Bumping package versions...");
 await $`npm version -w ./packages/ui-components -w ./packages/ui-components-angular ${newVersion}`;
 
 const mainPkgJson = JSON.parse(fs.readFileSync("./packages/ui-components/package.json"));
@@ -42,6 +48,12 @@ for (const pkgToUpdate of toUpdate) {
   fs.writeFileSync(file, JSON.stringify(pkgJson, null, 2) + "\n");
 }
 
+// This needs to run AFTER the package versions have been bumped,
+// because the build for the angular package copies its package.json
+// into the build directory
+console.log("Building packages");
+await $`npm run build`;
+
 console.log("Updating changelog");
 await $`npm run changelog`;
 
@@ -52,13 +64,18 @@ const getChangelogCmdOutput =
 
 const changelog = getChangelogCmdOutput.stdout;
 
-console.log(`Commiting new version ${newVersionGitTag}`);
-await $`git add .`;
-await $`git commit -m ${newVersionGitTag}`;
+if (!isDryRun) {
+  console.log(`Commiting new version ${newVersionGitTag}`);
+  await $`git add .`;
+  await $`git commit -m ${newVersionGitTag}`;
 
-console.log(`Tagging new version ${newVersionGitTag}`);
-await $`git tag ${newVersionGitTag} -m ${changelog}`;
+  console.log(`Tagging new version ${newVersionGitTag}`);
+  await $`git tag ${newVersionGitTag} -m ${changelog}`;
+} else {
+  console.log("Dry run, not committing or tagging");
+}
 
+// TODO: Create GH release
 // const url = newGithubReleaseUrl({
 //   user: "oncarbon",
 //   repo: "ui-components",
@@ -67,6 +84,4 @@ await $`git tag ${newVersionGitTag} -m ${changelog}`;
 
 // await $`open ${url}`;
 
-console.log(`Prerelease DONE. Review the changes with 'git log' and push to remote:`);
-console.log(`git push`);
-console.log(`git push --tags`);
+console.log(`Prerelease DONE!`);
