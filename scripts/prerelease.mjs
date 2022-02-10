@@ -1,6 +1,6 @@
 #!/usr/bin/env zx
 
-const { $ } = require("zx");
+const { $, fs } = require("zx");
 import newGithubReleaseUrl from "new-github-release-url";
 
 $.verbose = false;
@@ -22,6 +22,19 @@ if (isCleanCmdOutput.stdout !== "") {
 console.log("Bumping package versions");
 await $`npm version -w ./packages/ui-components -w ./packages/ui-components-angular ${newVersion}`;
 
+const toUpdate = ["ui-components-angular"];
+const mainPkgJson = JSON.parse(fs.readFileSync("./packages/ui-components/package.json"));
+
+for (const pkgToUpdate of toUpdate) {
+  console.log(
+    `Updating ${pkgToUpdate} dependency to @oncarbon/ui-components@${mainPkgJson.version}`,
+  );
+  const file = path.join("packages", pkgToUpdate, "package.json");
+  const pkgJson = JSON.parse(fs.readFileSync(file, "utf8"));
+  pkgJson["dependencies"]["@oncarbon/ui-components"] = mainPkgJson.version;
+  fs.writeFileSync(file, JSON.stringify(pkgJson, null, 2) + "\n");
+}
+
 console.log("Updating changelog");
 await $`npm run changelog`;
 
@@ -29,9 +42,8 @@ await $`npm run changelog`;
 // Diff with 0 lines surrounding the diff, skip first 6 lines and remove first character on each line
 const getChangelogCmdOutput =
   await $`git diff --unified=0 --no-color  CHANGELOG.md | tail -n +6 | cut -c 2-`;
-const packageJson = JSON.parse(fs.readFileSync("./packages/ui-components/package.json"));
 
-const newVersioNumber = `v${packageJson.version}`;
+const newVersioNumber = `v${mainPkgJson.version}`;
 const changelog = getChangelogCmdOutput.stdout;
 
 console.log(`Commiting new version ${newVersioNumber}`);
