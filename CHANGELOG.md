@@ -1,3 +1,7 @@
+## 1.4.2 (2022-02-10)
+
+
+
 ## [1.4.1](https://github.com/oncarbon/ui-components/compare/v1.4.0...v1.4.1) (2022-02-09)
 
 

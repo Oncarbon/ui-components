@@ -1,6 +1,6 @@
 {
   "name": "@oncarbon/ui-components-angular",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Angular specific wrappers for @oncarbon/ui-components",
   "keywords": [
     "oncarbon",
@@ -27,7 +27,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@oncarbon/ui-components": "1.4.1",
+    "@oncarbon/ui-components": "1.4.2",
     "tslib": "^2.1.0"
   },
   "peerDependencies": {
