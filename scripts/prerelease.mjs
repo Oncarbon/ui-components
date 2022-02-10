@@ -1,7 +1,7 @@
 #!/usr/bin/env zx
 
 const { $, fs } = require("zx");
-import newGithubReleaseUrl from "new-github-release-url";
+// import newGithubReleaseUrl from "new-github-release-url";
 
 $.verbose = false;
 
@@ -22,9 +22,16 @@ if (isCleanCmdOutput.stdout !== "") {
 console.log("Bumping package versions");
 await $`npm version -w ./packages/ui-components -w ./packages/ui-components-angular ${newVersion}`;
 
-const toUpdate = ["ui-components-angular"];
 const mainPkgJson = JSON.parse(fs.readFileSync("./packages/ui-components/package.json"));
+const newVersionGitTag = `v${mainPkgJson.version}`;
 
+const doesTagExist = await $`git tag -l ${newVersionGitTag}`;
+if (doesTagExist.stdout !== "") {
+  console.error(`ERR: Tag ${newVersionGitTag} already exists`);
+  process.exit(2);
+}
+
+const toUpdate = ["ui-components-angular"];
 for (const pkgToUpdate of toUpdate) {
   console.log(
     `Updating ${pkgToUpdate} dependency to @oncarbon/ui-components@${mainPkgJson.version}`,
@@ -43,23 +50,22 @@ await $`npm run changelog`;
 const getChangelogCmdOutput =
   await $`git diff --unified=0 --no-color  CHANGELOG.md | tail -n +6 | cut -c 2-`;
 
-const newVersioNumber = `v${mainPkgJson.version}`;
 const changelog = getChangelogCmdOutput.stdout;
 
-console.log(`Commiting new version ${newVersioNumber}`);
+console.log(`Commiting new version ${newVersionGitTag}`);
 await $`git add .`;
-await $`git commit -m ${newVersioNumber}`;
+await $`git commit -m ${newVersionGitTag}`;
 
-console.log(`Tagging new version ${newVersioNumber}`);
-await $`git tag ${newVersioNumber} -m ${changelog}`;
+console.log(`Tagging new version ${newVersionGitTag}`);
+await $`git tag ${newVersionGitTag} -m ${changelog}`;
 
-const url = newGithubReleaseUrl({
-  user: "oncarbon",
-  repo: "ui-components",
-  body: changelog,
-});
+// const url = newGithubReleaseUrl({
+//   user: "oncarbon",
+//   repo: "ui-components",
+//   body: changelog,
+// });
 
-await $`open ${url}`;
+// await $`open ${url}`;
 
 console.log(`Prerelease DONE. Review the changes with 'git log' and push to remote:`);
 console.log(`git push`);

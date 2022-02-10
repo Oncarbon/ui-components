@@ -4,9 +4,12 @@ on:
   push:
     branches:
       - "!*"
-    tags:
-      - "v*"
   workflow_dispatch:
+    inputs:
+      newVersion:
+        description: "New version <major|minor|patch>"
+        type: "string"
+        required: true
 
 jobs:
   test:
@@ -30,6 +33,19 @@ jobs:
 
       - name: 📝 Test
         run: npm run test -w ./packages/ui-components
+
+      - name: ⚙️ Setup git config
+        run: |
+          git config user.name "GitHub Release Bot"
+          git config user.email "<>"
+
+      - name: ⌛️ Do pre-release
+        run: npm run prerelease ${{ github.event.inputs.newVersion }}
+
+      - name: ⤴️ Push to remote
+        run: |
+          git push origin main
+          git push --tags
 
       - name: Create .npmrc file
         run: echo "//registry.npmjs.org/:_authToken=\${NPM_AUTH_TOKEN}" > .npmrc
