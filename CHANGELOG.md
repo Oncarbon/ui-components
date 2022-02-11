@@ -1,5 +1,6 @@
-## 1.4.2 (2022-02-10)
+## [1.4.2](https://github.com/oncarbon/ui-components/compare/v1.4.1...v1.4.2) (2022-02-10)
 
+* **ui-components-angular:** fix @oncarbon/ui-components-angular depending on old main pkg version ([57701c0](https://github.com/oncarbon/ui-components/commit/57701c0f0b269098f95ae23d88c64166852b4030))
 
 
 ## [1.4.1](https://github.com/oncarbon/ui-components/compare/v1.4.0...v1.4.1) (2022-02-09)
