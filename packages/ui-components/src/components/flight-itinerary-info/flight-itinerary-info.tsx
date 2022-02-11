@@ -82,7 +82,10 @@ export class FlightItineraryInfo {
 
   render() {
     const url = this.getItineryInfoUrl();
-    if (!url) return <Host></Host>;
+    if (!url) {
+      console.error("Missing or invalid itineraryOncarbonId");
+      return <Host></Host>;
+    }
 
     return (
       <Host>
