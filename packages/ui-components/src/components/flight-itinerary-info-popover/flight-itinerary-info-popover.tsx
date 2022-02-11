@@ -64,7 +64,6 @@ export class FlightItineraryInfoPopover {
 
   @Element() el: HTMLElement;
 
-  private triggerEl: Element;
   private popperInstance: Instance;
   private popoverContentEl: HTMLElement;
   private popoverEl: HTMLElement;
@@ -73,6 +72,7 @@ export class FlightItineraryInfoPopover {
    * Is the popover currently open or closed
    */
   private isVisible = false;
+  private isOpening = false;
 
   @Listen("click", {
     // Use body instead of window as the click event handler's target,
@@ -81,10 +81,17 @@ export class FlightItineraryInfoPopover {
     target: "body",
   })
   onClick(e: MouseEvent) {
-    this.triggerEl = this.getTriggerElement();
-    if (this.triggerEl && this.triggerEl.contains(e.target as Node)) {
+    if (this.isOpening) {
+      // Ignore clicks while opening
+      return;
+    }
+
+    const triggerEl = this.getTriggerElement();
+    if (triggerEl && triggerEl.contains(e.target as Node)) {
       this.isVisible ? this.close() : this.open();
-    } else if (this.popoverContentEl && !this.popoverContentEl.contains(e.target as Node)) {
+    } else if (this.popoverContentEl) {
+      if (!this.popoverContentEl.contains(e.target as Node)) this.close();
+    } else {
       this.close();
     }
   }
@@ -94,11 +101,23 @@ export class FlightItineraryInfoPopover {
    */
   @Method()
   async open() {
-    this.isVisible = true;
+    if (this.isVisible) {
+      return;
+    }
 
+    this.isOpening = true;
     this.positionAfterCreation();
     this.createAndAddPopoverIntoDom();
     this.positionPopover();
+
+    // If the popover is being opened using open() using a click (or other)
+    // handler, our click event handler will not be called. Hence we need
+    // to keep track if the popover is being opened or not. Otherwise the
+    // click event handler will close the popover immediately after opening
+    setTimeout(() => {
+      this.isOpening = false;
+      this.isVisible = true;
+    }, 0);
   }
 
   /**
@@ -177,7 +196,8 @@ export class FlightItineraryInfoPopover {
 
   private positionPopover() {
     if (!this.popperInstance && this.usePopper()) {
-      this.popperInstance = createPopper(this.triggerEl, this.popoverContentEl, {
+      const triggerEl = this.getTriggerElement();
+      this.popperInstance = createPopper(triggerEl, this.popoverContentEl, {
         placement: this.placement ?? "bottom",
         modifiers: [
           flip,
