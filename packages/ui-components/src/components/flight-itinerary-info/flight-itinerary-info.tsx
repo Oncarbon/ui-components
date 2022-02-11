@@ -105,6 +105,7 @@ export class FlightItineraryInfo {
       return null;
     }
 
-    return `${this.apiBaseUrl}/v1/flights/flight-itineraries/embed/${this.itineraryOncarbonId}?lang=${this.language}`;
+    const baseUrl = this.apiBaseUrl || "https://api.oncarbon.app";
+    return `${baseUrl}/v1/flights/flight-itineraries/embed/${this.itineraryOncarbonId}?lang=${this.language}`;
   }
 }
