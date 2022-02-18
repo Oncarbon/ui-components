@@ -1,3 +1,12 @@
+## 1.4.4 (2022-02-18)
+
+
+### Bug Fixes
+
+* **onc-flight-itinerary-info-popover:** use capture click event listener to close the popover ([c015e9c](https://github.com/oncarbon/ui-components/commit/c015e9ce4ef3370c3bc014b8bdfcbee5560f44e9))
+
+
+
 ## 1.4.3 (2022-02-11)
 
 
