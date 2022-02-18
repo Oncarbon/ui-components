@@ -5,6 +5,8 @@ import preventOverflow from "@popperjs/core/lib/modifiers/preventOverflow";
 import { createPopper } from "@popperjs/core/lib/popper-lite";
 import { Component, Element, Prop, h, Listen, Method } from "@stencil/core";
 
+import { assert } from "../../utils/assert";
+
 import type { Instance, Placement } from "@popperjs/core";
 
 @Component({
@@ -74,25 +76,42 @@ export class FlightItineraryInfoPopover {
   private isVisible = false;
   private isOpening = false;
 
-  @Listen("click", {
-    // Use body instead of window as the click event handler's target,
-    // because on ios safari the events are not fired on window but on
-    // body they work.
-    target: "body",
-  })
-  onClick(e: MouseEvent) {
-    if (this.isOpening) {
-      // Ignore clicks while opening
+  // We use two click handlers in the body. One with bubbling and other with
+  // capture. The capture is used to close the popover when clicking
+  // outside of the popover. It uses capturing so the we have better chances
+  // of getting the click event, as some sites might stop propagation of the
+  // event. The bubbling version is used to handle clicks on the trigger
+  // element, to open the popover.
+  //
+  // The click handler is in the body instead of window, because on ios
+  // safari the events are not fired on window but on body they work.
+  @Listen("click", { target: "body", capture: true })
+  checkShouldBeClosed(e: MouseEvent) {
+    if (this.isOpening || !this.isVisible) {
+      return;
+    }
+
+    // When the popover is visible popoverContentEl should be define
+    assert(!!this.popoverContentEl, "popoverContentEl should be defined when popover is visible");
+
+    const wasPopoverContentClicked = this.popoverContentEl.contains(e.target as Node);
+    if (!wasPopoverContentClicked) {
+      // Let the event propagation finish before closing the popover.
+      // This way we don't reopen the popover immediately after closing
+      // it if for example the trigger element was clicked.
+      setTimeout(() => this.close(), 0);
+    }
+  }
+
+  @Listen("click", { target: "body" })
+  checkShouldBeOpened(e: MouseEvent) {
+    if (this.isOpening || this.isVisible) {
       return;
     }
 
     const triggerEl = this.getTriggerElement();
     if (triggerEl && triggerEl.contains(e.target as Node)) {
-      this.isVisible ? this.close() : this.open();
-    } else if (this.popoverContentEl) {
-      if (!this.popoverContentEl.contains(e.target as Node)) this.close();
-    } else {
-      this.close();
+      this.open();
     }
   }
 
