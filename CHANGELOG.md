@@ -1,3 +1,12 @@
+## 1.5.1 (2022-09-20)
+
+
+### Bug Fixes
+
+* **ui-components-react:** add separate bundles for cjs and esm ([3384b8e](https://github.com/oncarbon/ui-components/commit/3384b8ecceee53f90e0e8dd476ef8712d3b8749e))
+
+
+
 # 1.5.0 (2022-09-20)
 
 
