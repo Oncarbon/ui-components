@@ -5,3 +5,4 @@ dist/
 loader/
 # don't lint nyc coverage output
 coverage/
+commitlint.config.js
