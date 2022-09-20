@@ -5,6 +5,10 @@ const { $, fs, argv } = require("zx");
 
 const isDryRun = !!argv["dry-run"];
 
+if (isDryRun) {
+  console.log("Running in dry-run mode");
+}
+
 const newVersion = argv._[1];
 if (!newVersion) {
   console.error("ERR: Give new version as a parameter:");
@@ -27,7 +31,9 @@ await $`npm run test`;
 
 console.log("Bumping package versions...");
 const toBump = ["ui-components", "ui-components-angular", "ui-components-react"];
-await $`npm version ${toBump.map((p) => `-w ./packages/${p}`).join(" ")} ${newVersion}`;
+for (const pkg of toBump) {
+  await $`npm version --no-git-tag-version -w ${`./packages/${pkg}`} ${newVersion}`;
+}
 
 const mainPkgJson = JSON.parse(fs.readFileSync("./packages/ui-components/package.json"));
 const newVersionGitTag = `v${mainPkgJson.version}`;
