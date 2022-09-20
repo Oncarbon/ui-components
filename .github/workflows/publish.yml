@@ -60,3 +60,13 @@ jobs:
         working-directory: ./packages/ui-components-angular/dist
         env:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+      - name: Create .npmrc file
+        run: echo "//registry.npmjs.org/:_authToken=\${NPM_AUTH_TOKEN}" > .npmrc
+        working-directory: ./packages/ui-components-react
+
+      - name: 📢 Publish @oncarbon/ui-components-react
+        run: npm publish
+        working-directory: ./packages/ui-components-react
+        env:
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

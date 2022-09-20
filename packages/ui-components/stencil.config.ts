@@ -1,5 +1,6 @@
 import { angularOutputTarget as angular } from "@stencil/angular-output-target";
 import { Config } from "@stencil/core";
+import { reactOutputTarget as react } from "@stencil/react-output-target";
 
 export const config: Config = {
   namespace: "Oncarbon",
@@ -9,6 +10,11 @@ export const config: Config = {
       componentCorePackage: `@oncarbon/ui-components`,
       directivesProxyFile: `../ui-components-angular/src/lib/stencil-generated/components.ts`,
       includeImportCustomElements: true,
+    }),
+    react({
+      componentCorePackage: "@oncarbon/ui-components",
+      proxiesFile: "../ui-components-react/src/components/stencil-generated/index.ts",
+      includeDefineCustomElements: true,
     }),
     {
       type: "dist",

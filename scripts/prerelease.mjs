@@ -37,7 +37,7 @@ if (doesTagExist.stdout !== "") {
   process.exit(2);
 }
 
-const toUpdate = ["ui-components-angular"];
+const toUpdate = ["ui-components-angular", "ui-components-react"];
 for (const pkgToUpdate of toUpdate) {
   console.log(
     `Updating ${pkgToUpdate} dependency to @oncarbon/ui-components@${mainPkgJson.version}`,

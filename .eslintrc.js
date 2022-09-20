@@ -21,6 +21,7 @@ module.exports = {
     node: true,
   },
   rules: {
+    "import/no-unresolved": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/consistent-type-imports": [

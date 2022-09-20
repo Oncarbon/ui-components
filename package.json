@@ -10,8 +10,9 @@
     "clean": "turbo run clean",
     "changelog": "conventional-changelog -p angular -i ./CHANGELOG.md -k packages/ui-components -s",
     "commit": "cz",
-    "lint": "eslint . --max-warnings=0 --ext .ts",
-    "lint:fix": "eslint . --max-warnings=0 --ext .ts --fix",
+    "dev": "turbo run dev",
+    "lint": "eslint . --max-warnings=0",
+    "lint:fix": "eslint . --max-warnings=0 --fix",
     "prettier": "prettier . --list-different",
     "prettier:fix": "prettier . --write",
     "prepare": "husky install",
@@ -39,7 +40,7 @@
     "zx": "4.2.0"
   },
   "lint-staged": {
-    "*.ts": "eslint --max-warnings=0 --cache --fix",
+    "*.ts": "eslint --cache --fix",
     "*.{ts,md}": "prettier --write"
   },
   "config": {
