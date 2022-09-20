@@ -27,7 +27,7 @@ await $`npm run test`;
 
 console.log("Bumping package versions...");
 const toBump = ["ui-components", "ui-components-angular", "ui-components-react"];
-await $`npm version ${toBump.map((p) => `-w ./packages/${p}`).join(" ")} ${newVersion}`;
+await $`npm version ${toBump.map((p) => `-w ./packages/${p}`)} ${newVersion}`;
 
 const mainPkgJson = JSON.parse(fs.readFileSync("./packages/ui-components/package.json"));
 const newVersionGitTag = `v${mainPkgJson.version}`;
