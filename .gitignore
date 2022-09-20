@@ -6,3 +6,4 @@ coverage/
 .eslintcache
 stats.json
 packages/ui-components/components
+.turbo/

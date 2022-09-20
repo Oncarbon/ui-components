@@ -6,8 +6,8 @@
     "./packages/*"
   ],
   "scripts": {
-    "build": "npm run build -w ./packages/ui-components && npm run build -w ./packages/ui-components-angular",
-    "clean": "npm run clean -w ./packages/ui-components && npm run clean -w ./packages/ui-components-angular",
+    "build": "turbo run build",
+    "clean": "turbo run clean",
     "changelog": "conventional-changelog -p angular -i ./CHANGELOG.md -k packages/ui-components -s",
     "commit": "cz",
     "lint": "eslint . --max-warnings=0 --ext .ts",
@@ -16,7 +16,7 @@
     "prettier:fix": "prettier . --write",
     "prepare": "husky install",
     "prerelease": "zx scripts/prerelease.mjs",
-    "test": "npm run test -w ./packages/ui-components"
+    "test": "turbo run test"
   },
   "license": "MIT",
   "devDependencies": {
@@ -34,6 +34,7 @@
     "lint-staged": "11.2.6",
     "new-github-release-url": "2.0.0",
     "prettier": "2.4.1",
+    "turbo": "1.4.7",
     "typescript": "4.2.4",
     "zx": "4.2.0"
   },
