@@ -62,6 +62,13 @@ export class FlightItineraryInfoPopover {
    */
   @Prop() apiBaseUrl?: string;
 
+  /**
+   * Should the default behaviour to close the popover when user clicks outside
+   * it be disabled. If yes, the popover can only be closed either programmatically
+   * or by clicking the close icon.
+   */
+  @Prop() disableCloseOnOutsideClick?: boolean;
+
   //#endregion Props
 
   @Element() el: HTMLElement;
@@ -87,7 +94,7 @@ export class FlightItineraryInfoPopover {
   // safari the events are not fired on window but on body they work.
   @Listen("click", { target: "body", capture: true })
   checkShouldBeClosed(e: MouseEvent) {
-    if (this.isOpening || !this.isVisible) {
+    if (this.isOpening || !this.isVisible || this.disableCloseOnOutsideClick) {
       return;
     }
 
