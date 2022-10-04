@@ -1,6 +1,6 @@
 {
   "name": "@oncarbon/ui-components-react",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "description": "React specific wrappers for @oncarbon/ui-components",
   "keywords": [
     "oncarbon",
@@ -28,7 +28,7 @@
     "tsc": "tsc -p ."
   },
   "dependencies": {
-    "@oncarbon/ui-components": "1.5.1"
+    "@oncarbon/ui-components": "1.6.0"
   },
   "peerDependencies": {
     "react": "^17.0.2",

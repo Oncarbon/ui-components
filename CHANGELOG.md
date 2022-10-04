@@ -1,3 +1,12 @@
+# [1.6.0](https://github.com/oncarbon/ui-components/compare/v1.5.1...v1.6.0) (2022-10-04)
+
+
+### Features
+
+* **onc-flight-itinerary-info-popover:** add disable-close-on-outside-click prop ([7ffdb06](https://github.com/oncarbon/ui-components/commit/7ffdb0698f763e31223252a4c42600c13a130c85))
+
+
+
 ## 1.5.1 (2022-09-20)
 
 
