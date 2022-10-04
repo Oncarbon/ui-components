@@ -5,10 +5,18 @@
   "description": "",
   "main": "index.js",
   "devDependencies": {
+    "chokidar-cli": "3.0.0",
+    "concurrently": "7.4.0",
     "serve": "^13.0.2"
   },
   "scripts": {
-    "start": "serve dist"
+    "clean": "rm -rf ./dist",
+    "copy:components": "cp -rf ../ui-components/dist ./dist",
+    "copy:html": "cp ./src/index.html ./dist/index.html",
+    "dev": "npm run clean && npm run copy:components && npm run copy:html && concurrently \"npm run watch:components\" \"npm run watch:html\" \"npm run start\"",
+    "start": "serve dist",
+    "watch:components": "chokidar \"../ui-components/dist\" -c \"npm run copy:components\"",
+    "watch:html": "chokidar \"./src\" -c \"npm run copy:html\""
   },
   "author": "Oncarbon",
   "license": "MIT"
