@@ -32,6 +32,7 @@
     "access": "public"
   },
   "scripts": {
+    "dev": "npm run watch",
     "clean": "rimraf dist && rimraf loader",
     "build": "stencil build --docs --docs-json dist/docs.json",
     "start": "stencil build --dev --watch --serve",
