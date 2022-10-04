@@ -31,6 +31,10 @@ export namespace Components {
          */
         "close": () => Promise<void>;
         /**
+          * Should the default behaviour to close the popover when user clicks outside it be disabled. If yes, the popover can only be closed either programmatically or by clicking the close icon.
+         */
+        "disableCloseOnOutsideClick"?: boolean;
+        /**
           * Oncarbon ID for the flight itinerary whose info is to be shown
          */
         "itineraryOncarbonId": string;
@@ -104,6 +108,10 @@ declare namespace LocalJSX {
           * Oncarbon API base URL where the info is loaded from
          */
         "apiBaseUrl"?: string;
+        /**
+          * Should the default behaviour to close the popover when user clicks outside it be disabled. If yes, the popover can only be closed either programmatically or by clicking the close icon.
+         */
+        "disableCloseOnOutsideClick"?: boolean;
         /**
           * Oncarbon ID for the flight itinerary whose info is to be shown
          */

@@ -45,14 +45,14 @@ export declare interface OncFlightItineraryInfoPopover extends Components.OncFli
 
 @ProxyCmp({
   defineCustomElementFn: defineOncFlightItineraryInfoPopover,
-  inputs: ['apiBaseUrl', 'itineraryOncarbonId', 'language', 'offset', 'placement', 'trigger'],
+  inputs: ['apiBaseUrl', 'disableCloseOnOutsideClick', 'itineraryOncarbonId', 'language', 'offset', 'placement', 'trigger'],
   methods: ['open', 'close']
 })
 @Component({
   selector: 'onc-flight-itinerary-info-popover',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['apiBaseUrl', 'itineraryOncarbonId', 'language', 'offset', 'placement', 'trigger']
+  inputs: ['apiBaseUrl', 'disableCloseOnOutsideClick', 'itineraryOncarbonId', 'language', 'offset', 'placement', 'trigger']
 })
 export class OncFlightItineraryInfoPopover {
   protected el: HTMLElement;
