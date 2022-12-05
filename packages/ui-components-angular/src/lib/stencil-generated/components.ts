@@ -23,13 +23,13 @@ export declare interface OncFlightItineraryInfo extends Components.OncFlightItin
 
 @ProxyCmp({
   defineCustomElementFn: defineOncFlightItineraryInfo,
-  inputs: ['apiBaseUrl', 'itineraryOncarbonId', 'language']
+  inputs: ['apiBaseUrl', 'itineraryOncarbonId', 'language', 'version']
 })
 @Component({
   selector: 'onc-flight-itinerary-info',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['apiBaseUrl', 'itineraryOncarbonId', 'language']
+  inputs: ['apiBaseUrl', 'itineraryOncarbonId', 'language', 'version']
 })
 export class OncFlightItineraryInfo {
   protected el: HTMLElement;
@@ -45,14 +45,14 @@ export declare interface OncFlightItineraryInfoPopover extends Components.OncFli
 
 @ProxyCmp({
   defineCustomElementFn: defineOncFlightItineraryInfoPopover,
-  inputs: ['apiBaseUrl', 'disableCloseOnOutsideClick', 'itineraryOncarbonId', 'language', 'offset', 'placement', 'trigger'],
+  inputs: ['apiBaseUrl', 'disableCloseOnOutsideClick', 'itineraryOncarbonId', 'language', 'offset', 'placement', 'trigger', 'version'],
   methods: ['open', 'close']
 })
 @Component({
   selector: 'onc-flight-itinerary-info-popover',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['apiBaseUrl', 'disableCloseOnOutsideClick', 'itineraryOncarbonId', 'language', 'offset', 'placement', 'trigger']
+  inputs: ['apiBaseUrl', 'disableCloseOnOutsideClick', 'itineraryOncarbonId', 'language', 'offset', 'placement', 'trigger', 'version']
 })
 export class OncFlightItineraryInfoPopover {
   protected el: HTMLElement;

@@ -21,6 +21,7 @@ const itineraryOncarbonId =
 | `apiBaseUrl`          | `api-base-url`          | Optional base URL for the Oncarbon API where the info is loaded from                                                                                                            | `string` | `"https://api.oncarbon.app"` |
 | `itineraryOncarbonId` | `itinerary-oncarbon-id` | The flight itinerary's oncarbon id for which to show the info                                                                                                                   | `string` | `undefined`                  |
 | `language`            | `language`              | Optional RFC 5646 language tag in which the info is shown. Supported languages are english and finnish. If an unsupported language tag is given, english is used as a fallback. | `string` | `"en"`                       |
+| `version`             | `version`               | Optional version tag to define which version of the info to show.                                                                                                               | `string` | `undefined`                  |
 
 
 ## Events
