@@ -58,6 +58,11 @@ export class FlightItineraryInfoPopover {
   @Prop() language? = "en";
 
   /**
+   * Optional version tag to define which version of the info to show.
+   */
+  @Prop() version?: string;
+
+  /**
    * Oncarbon API base URL where the info is loaded from
    */
   @Prop() apiBaseUrl?: string;
@@ -196,6 +201,7 @@ export class FlightItineraryInfoPopover {
     content.apiBaseUrl = this.apiBaseUrl;
     content.itineraryOncarbonId = this.itineraryOncarbonId;
     content.language = this.language;
+    content.version = this.version;
 
     content.addEventListener("loadingReady", () => this.reposition());
     content.addEventListener("closeClicked", () => this.close());

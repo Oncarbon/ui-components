@@ -20,6 +20,10 @@ export namespace Components {
           * Optional RFC 5646 language tag in which the info is shown. Supported languages are english and finnish. If an unsupported language tag is given, english is used as a fallback.
          */
         "language"?: string;
+        /**
+          * Optional version tag to define which version of the info to show.
+         */
+        "version"?: string;
     }
     interface OncFlightItineraryInfoPopover {
         /**
@@ -60,6 +64,10 @@ export namespace Components {
           * Optional trigger element that opens the popup and in reference to which the popover is positioned. Can either be a 1. a DOM selector string, such as .trigger-button 2. a HTML element  If none is given, the popover is triggered and positioned by the first child of this component.
          */
         "trigger"?: string | HTMLElement;
+        /**
+          * Optional version tag to define which version of the info to show.
+         */
+        "version"?: string;
     }
 }
 declare global {
@@ -102,6 +110,10 @@ declare namespace LocalJSX {
           * Event emitted when the flight itinerary info has been loaded
          */
         "onLoadingReady"?: (event: CustomEvent<void>) => void;
+        /**
+          * Optional version tag to define which version of the info to show.
+         */
+        "version"?: string;
     }
     interface OncFlightItineraryInfoPopover {
         /**
@@ -134,6 +146,10 @@ declare namespace LocalJSX {
           * Optional trigger element that opens the popup and in reference to which the popover is positioned. Can either be a 1. a DOM selector string, such as .trigger-button 2. a HTML element  If none is given, the popover is triggered and positioned by the first child of this component.
          */
         "trigger"?: string | HTMLElement;
+        /**
+          * Optional version tag to define which version of the info to show.
+         */
+        "version"?: string;
     }
     interface IntrinsicElements {
         "onc-flight-itinerary-info": OncFlightItineraryInfo;

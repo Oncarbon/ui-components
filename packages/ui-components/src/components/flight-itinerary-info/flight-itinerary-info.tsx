@@ -23,6 +23,11 @@ export class FlightItineraryInfo {
   @Prop() language? = "en";
 
   /**
+   * Optional version tag to define which version of the info to show.
+   */
+  @Prop() version?: string;
+
+  /**
    * Optional base URL for the Oncarbon API where the info is loaded from
    */
   @Prop() apiBaseUrl = "https://api.oncarbon.app";
@@ -106,6 +111,8 @@ export class FlightItineraryInfo {
     }
 
     const baseUrl = this.apiBaseUrl || "https://api.oncarbon.app";
-    return `${baseUrl}/v1/flights/flight-itineraries/embed/${this.itineraryOncarbonId}?lang=${this.language}`;
+    const url = `${baseUrl}/v1/flights/flight-itineraries/embed/${this.itineraryOncarbonId}?lang=${this.language}`;
+
+    return this.version ? `${url}&v=${this.version}` : url;
   }
 }
