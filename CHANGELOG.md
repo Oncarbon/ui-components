@@ -1,3 +1,12 @@
+# [1.7.0](https://github.com/oncarbon/ui-components/compare/v1.6.1...v1.7.0) (2022-12-05)
+
+
+### Features
+
+* **onc-flight-itinerary-info-popover onc-flight-itinerary-info:** add version property ([8442da0](https://github.com/oncarbon/ui-components/commit/8442da0118599aca9490dba5bf69ceb64a45536a))
+
+
+
 # [1.6.1](https://github.com/oncarbon/ui-components/compare/v1.6.0...v1.6.1) (2022-10-04)
 
 
